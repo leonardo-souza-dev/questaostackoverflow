@@ -1,0 +1,44 @@
+﻿@model QuestaoStackOverflow.Models.ListaContrato
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <script src="~/js/site.js"></script>
+</head>
+
+<body>
+    <form>
+        <table class="table table-responsive table-hover table-striped" id="tablepesquisaclientes" style="font-size:12px;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nº Contrato</th>
+                    <th>Cliente</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Contratos)
+                {
+                    <tr>
+                        <td><input type="checkbox" class="checked" /></td>
+                        <td>@item.Id</td>
+                        <td>@item.Cliente.Nome</td>
+                        <td>@item.Valor.ToString("N2")</td>
+                        <td style="display:none;">@item.PedidoVenda.EmpresaID</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <input type="button" value="Enviar" id="enviarBtn" />
+    </form>
+</body>
+</html>

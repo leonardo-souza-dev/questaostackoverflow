@@ -1,0 +1,41 @@
+﻿@model QuestaoStackOverflow.Models.ListaContrato
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <form asp-action="Enviar">
+        <h3>Id da lista de contratos: @Html.DisplayFor(x=>x.Id)</h3>
+        <table class="table table-responsive table-hover table-striped" id="tablepesquisaclientes" style="font-size:12px;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nº Contrato</th>
+                    <th>Cliente</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(var i = 0; i < @Model.Contratos.Count; i++)
+                {
+                <tr>
+                    <td><input type="checkbox" class="checked" asp-for="@Model.Contratos[i].Checado" /></td>
+                    <td><label asp-for="@Model.Contratos[i].Id" /></td>
+                    <td><label asp-for="@Model.Contratos[i].Cliente.Nome" /></td>
+                    <td><label asp-for="@Model.Contratos[i].Valor" /></td>
+                    <td style="display:none;"><input type="hidden" asp-for="@Model.Contratos[i].PedidoVenda.EmpresaID"/></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <input type="submit" value="Enviar" />
+    </form>
+</body>
+</html>
